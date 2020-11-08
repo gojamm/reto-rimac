@@ -1,0 +1,153 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2020-11-08T18:54:45Z",
+    "title": "dev-reto-rimac"
+  },
+  "host": "gdm64hv0ag.execute-api.us-east-1.amazonaws.com",
+  "basePath": "/dev",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/listado": {
+      "get": {
+        "responses": {}
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nuevo": {
+      "post": {
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "retoApiGa1QNTUOEXRI3K1",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/retoApiGa1QNTUOEXRI3K1"
+            }
+          }
+        ],
+        "responses": {}
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/obtener/{id}": {
+      "get": {
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {}
+      },
+      "options": {
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "200 response",
+            "headers": {
+              "Access-Control-Allow-Origin": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Methods": {
+                "type": "string"
+              },
+              "Access-Control-Allow-Headers": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "retoApiGa1QNTUOEXRI3K1": {
+      "type": "object",
+      "required": [
+        "idPelicula",
+        "puntaje",
+        "usuario"
+      ],
+      "properties": {
+        "descripcion": {
+          "type": "string",
+          "title": "Opinion de la pelicula",
+          "default": ""
+        },
+        "puntaje": {
+          "type": "number",
+          "title": "calificacion de 1-5"
+        },
+        "usuario": {
+          "type": "string",
+          "title": "Nombre de usuario",
+          "default": ""
+        },
+        "idPelicula": {
+          "type": "number",
+          "title": "Id de la pelicula"
+        }
+      },
+      "title": "Opinion Schema"
+    }
+  }
+}

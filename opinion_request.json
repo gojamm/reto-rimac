@@ -1,0 +1,28 @@
+{
+    "definitions": {},
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "type": "object",
+    "title": "Opinion Schema",
+    "required": ["usuario","puntaje","idPelicula"],
+    "properties": {
+      "usuario": {
+        "type": "string",
+        "title": "Nombre de usuario",
+        "default": ""
+      },
+      "descripcion": {
+        "type": "string",
+        "title": "Opinion de la pelicula",
+        "default": ""
+      },
+      "puntaje": {
+        "type": "number",
+        "title": "calificacion de 1-5"
+      },
+      "idPelicula": {
+        "type": "number",
+        "title": "Id de la pelicula"
+      }
+
+    }
+  }

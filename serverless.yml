@@ -1,0 +1,72 @@
+org: gojamm
+app: reto-rimac-app
+service: reto-rimac
+frameworkVersion: '2'
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:PutItem
+        - dynamodb:GetItem
+        - dynamodb:Scan
+      Resource: 
+        Fn::GetAtt:
+          - OpinionesStarWarsTable
+          - Arn
+  environment:
+    STARWARS_RIMAC_TABLE: 'OpinionesStarWars'
+    ENDPOINT_SWAPI_FILMS: 'https://swapi.py4e.com/api/films/'
+
+functions:
+  nuevoRegistro:
+    handler: handlers/nuevoRegistro.handler
+    events:
+      - http:
+          method: POST
+          path: /nuevo
+          cors: true
+          request:
+            schema:
+              application/json: ${file(opinion_request.json)}
+  obtenerRegistro:
+      handler: handlers/obtenerRegistro.handler
+      events:
+        - http:
+            method: GET
+            path: /obtener/{id}
+            request:
+              parameters:
+                paths:
+                  id: true
+            cors: true
+  listarRegistros:
+    handler: handlers/listadoRegistros.handler
+    events:
+      - http:
+          method: GET
+          path: /listado/
+          cors: true
+
+resources:
+  Resources:
+    OpinionesStarWarsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: OpinionesStarWars
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+custom:
+  OpinionesStarWarsTable:
+    name: !Ref OpinionesStarWarsTable
+    arn: !GetAtt OpinionesStarWarsTable.Arn
+  bundle:
+    linting: false
